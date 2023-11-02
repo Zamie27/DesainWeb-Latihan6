@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .image-container {
+        width: 300px; /* Lebar container gambar */
+        overflow: hidden; /* Gambar di luar container akan tersembunyi */
+      }
+
+      .image-slider {
+        display: flex; /* Mengatur gambar dalam baris horizontal */
+        transition: transform 0.5s ease-in-out; /* Animasi perpindahan gambar */
+      }
+
+      .image-slider img {
+        width: 300px; /* Lebar gambar */
+        height: auto; /* Tinggi gambar menyesuaikan lebar */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image-container">
+      <div class="image-slider">
+        <img src="image/1.jpg" alt="Gambar 1" />
+        <img src="image/2.jpg" alt="Gambar 2" />
+        <img src="image/3.jpg" alt="Gambar 3" />
+      </div>
+    </div>
+
+    <script>
+      const imageSlider = document.querySelector(".image-slider");
+      const images = document.querySelectorAll(".image-slider img");
+      let currentIndex = 0;
+
+      function slideLeft() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateSlider();
+      }
+
+      function slideRight() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateSlider();
+      }
+
+      function updateSlider() {
+        const translateX = -currentIndex * 300; // Menggeser berdasarkan lebar gambar
+        imageSlider.style.transform = `translateX(${translateX}px)`;
+      }
+
+      // Membuat tautan untuk menggeser gambar
+      const leftArrow = document.createElement("a");
+      leftArrow.textContent = "<";
+      leftArrow.addEventListener("click", slideLeft);
+
+      const rightArrow = document.createElement("a");
+      rightArrow.textContent = ">";
+      rightArrow.addEventListener("click", slideRight);
+
+      imageSlider.insertAdjacentElement("beforebegin", leftArrow);
+      imageSlider.insertAdjacentElement("afterend", rightArrow);
+
+      // Set interval untuk otomatis bergeser ke kiri
+      setInterval(slideLeft, 3000);
+    </script>
+  </body>
+</html>

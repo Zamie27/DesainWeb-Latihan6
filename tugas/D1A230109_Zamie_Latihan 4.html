@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Parallax by Zamie</title>
+    <style>
+      body.lock-scroll {
+        overflow: hidden;
+      }
+
+      body {
+        margin: 0px;
+        font-family: "Poppins", sans-serif;
+        background-image: url(background.jpg);
+        background-repeat: no-repeat;
+        background-position: top;
+      }
+
+      .hero {
+        min-height: 100vh;
+        text-align: center;
+        border: 3px solid transparent;
+      }
+
+      h1 {
+        margin-top: 20%;
+        color: white;
+      }
+
+      h2 {
+        margin-top: 25%;
+        font-size: large;
+        color: white;
+      }
+
+      a {
+        padding: 15px 50px;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 15px;
+        background-color: darkmagenta;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      .row .img:nth-child(1) {
+        height: 100vh;
+        background-image: url(img/img1.gif);
+        display: flex;
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+      .row .img:nth-child(2) {
+        height: 100vh;
+        background-image: url(img/img2.png);
+        display: flex;
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+      .row .img:nth-child(3) {
+        height: 100vh;
+        background-image: url(img/img3.png);
+        display: flex;
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+      .row .img:nth-child(4) {
+        height: 100vh;
+        background-image: url(img/img4.png);
+        display: flex;
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+      .row .img:nth-child(5) {
+        height: 100vh;
+        background-image: url(img/img5.png);
+        display: flex;
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading-spinner"></div>
+    <div id="content" style="display: none">
+      <div class="hero">
+        <h1>Klik tombol dibawah untuk scroll</h1>
+        <a href="#row" onclick="enableScroll()">klik</a>
+        <h2>Design by : D1A230109 | Muhammad Ridho Al Zamzami</h2>
+      </div>
+      <div class="row" id="row">
+        <div class="img"></div>
+        <div class="img"></div>
+        <div class="img"></div>
+        <div class="img"></div>
+        <div class="img"></div>
+      </div>
+    </div>
+    <script>
+      // loading animation
+      window.addEventListener("load", function () {
+        var loadingSpinner = document.querySelector(".loading-spinner");
+        var content = document.getElementById("content");
+
+        loadingSpinner.style.display = "none";
+
+        content.style.display = "block";
+      });
+
+      // Disable scroll
+      const rootElement = document.querySelector(":root");
+
+      function disableScroll() {
+        scrollTop = window.scrollY || document.documentElement.scrollTop;
+        scrollLeft = window.scrollY || document.documentElement.scrollLeft;
+
+        window.onscroll = function () {
+          window.scrollTo(scrollTop, scrollLeft);
+        };
+
+        rootElement.style.scrollBehavior = "auto";
+      }
+
+      function enableScroll() {
+        window.onscroll = function () {};
+        rootElement.style.scrollBehavior = "smooth";
+        // localStorage.setItem("opened", "true");
+      }
+      disableScroll();
+    </script>
+  </body>
+</html>
